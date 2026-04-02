@@ -1,10 +1,14 @@
-const router = require('express').Router();
+const express = require("express");
+const router = express.Router();
 
-router.get('/health', (_req, res) => {
-  res.status(200).json({
-    status: 'ok',
-    timestamp: new Date().toISOString(),
-  });
-});
+const authRoutes = require("../modules/auth/auth.routes");
+const userRoutes = require("../modules/users/user.routes");
+const addressRoutes = require("../modules/address/address.routes");
+const wishlistRoutes = require("../modules/wishlist/wishlist.routes");
+
+router.use("/auth", authRoutes);
+router.use("/users", userRoutes);
+router.use("/address", addressRoutes);
+router.use("/wishlist", wishlistRoutes);
 
 module.exports = router;
